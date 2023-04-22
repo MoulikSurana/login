@@ -80,7 +80,9 @@ public class MainActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(MainActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
-                            startActivities(new Intent[]{new Intent(getApplicationContext(), MainActivity2.class)});
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                                startActivities(new Intent[]{new Intent(getApplicationContext(), MainActivity2.class)});
+                            }
                             pb.setVisibility(View.INVISIBLE); }
                         else{
                             Toast.makeText(MainActivity.this, " Error!!\n"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -97,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 pb.setVisibility(View.VISIBLE);
-                startActivities(new Intent[]{new Intent(getApplicationContext(), MainActivity2.class)});
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                    startActivities(new Intent[]{new Intent(getApplicationContext(), MainActivity2.class)});
+                }
                 pb.setVisibility(View.INVISIBLE);
             }
         });
